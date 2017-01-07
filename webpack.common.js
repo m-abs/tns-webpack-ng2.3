@@ -48,9 +48,10 @@ module.exports = function (platform, destinationApp) {
         //Angular AOT compiler
         new AotPlugin({
             tsConfigPath: "tsconfig.aot.json",
-            entryModule: "app/app.module#AppModule",
+            entryModule: path.resolve(__dirname, "app/app.module#AppModule"),
             typeChecking: false
         }),
+        new nsWebpack.StyleUrlResolvePlugin({platform}),
     ];
 
     if (process.env.npm_config_uglify) {
@@ -124,8 +125,8 @@ module.exports = function (platform, destinationApp) {
                 {
                     test: /\.ts$/,
                     loaders: [
+                        "nativescript-dev-webpack/tns-aot-loader",
                         "@ngtools/webpack",
-                        "nativescript-dev-webpack/tns-aot-loader"
                     ]
                 },
                 // SASS support

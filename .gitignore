@@ -4,3 +4,4 @@ node_modules
 platforms
 *.js
 *.js.map
+yarn.lock

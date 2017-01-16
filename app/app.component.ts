@@ -2,14 +2,14 @@ import { Component } from "@angular/core";
 import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/take';
 
-import { CounterIncrease } from './store';
+import { CounterDecrease } from './store';
 
 @Component({
   selector: "my-app",
   templateUrl: "app.component.html",
 })
 export class AppComponent {
-  public counter$ = this.store.select<number>('count');
+  public counter$ = this.store.select<number>('counter');
 
   public get counter() {
     let res: number;
@@ -31,6 +31,6 @@ export class AppComponent {
   }
 
   public onTap() {
-    this.store.dispatch(new CounterIncrease());
+    this.store.dispatch(new CounterDecrease());
   }
 }

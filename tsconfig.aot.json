@@ -35,12 +35,11 @@
       "image-asset": ["node_modules/tns-core-modules/image-asset"],
       "connectivity": ["node_modules/tns-core-modules/connectivity"],
       "globals": ["node_modules/tns-core-modules/globals"]
-
     }
-   },
+  },
   "exclude": [
-      "node_modules",
-      "platforms"
+    "node_modules",
+    "platforms"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true,

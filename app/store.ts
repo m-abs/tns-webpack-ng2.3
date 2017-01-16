@@ -16,13 +16,13 @@ export function counterReducer(state: number = 0, action: Action) {
       return state + 1;
     }
     case DECREMENT: {
-      return state - 1;
+      return Math.max(state - 1, 0);
     }
     case RESET: {
       return 0;
     }
     case SET: {
-      return action.payload;
+      return Math.max(action.payload || 0, 0);
     }
     default: {
       return state;
@@ -33,6 +33,19 @@ export function counterReducer(state: number = 0, action: Action) {
 export class CounterIncrease implements Action {
   type = INCREMENT;
   payload = null;
+
+  constructor() {
+    console.log('new CounterIncrease');
+  }
+}
+
+export class CounterDecrease implements Action {
+  type = DECREMENT;
+  payload = null;
+
+  constructor() {
+    console.log('new CounterDecrease');
+  }
 }
 
 export class CounterInit implements Action {
@@ -44,6 +57,7 @@ export class CounterSet implements Action {
   type = SET;
 
   constructor(public payload: number) {
+    console.log(`new CounterSet(${payload})`);
   }
 }
 
@@ -55,5 +69,6 @@ export class CounterEffects {
     .map(() => new CounterSet(16));
 
   constructor(private actions$: Actions) {
+    console.log(`new CounterEffects()`);
   }
 }

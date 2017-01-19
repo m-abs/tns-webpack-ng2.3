@@ -39,6 +39,11 @@ module.exports = function (platform, destinationApp) {
             { from: "**/*.jpg" },
             { from: "**/*.png" },
             { from: "**/*.xml" },
+            {
+              from: path.resolve(__dirname,  'node_modules/nativescript-webview-interface/www'),
+              to: 'tns_modules/nativescript-webview-interface/www/',
+              toType: 'dir',
+            },
         ], { ignore: ["App_Resources/**"] }),
         //Generate a bundle starter script and activate it in package.json
         new nsWebpack.GenerateBundleStarterPlugin([

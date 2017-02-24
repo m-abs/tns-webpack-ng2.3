@@ -1,14 +1,13 @@
-<ScrollView>
+<ScrolllView>
   <StackLayout class="p-20">
-    <Label text="Tap the button" class="h1 text-center"></Label>
-    <Button text="TAP" (tap)="onTap()" class="btn btn-primary btn-active"></Button>
-    <Label [text]="message" class="h2 text-center" textWrap="true"></Label>
-    <!-- These works -->
-    <!-- <WebView  height="300" width="400" src="http://google.dk"></WebView>  -->
-    <!-- <Web-View height="300" width="400" src="http://google.dk"></Web-View> -->
-    <!-- <web-view height="300" width="400" src="http://google.dk"></web-view> -->
+    <Button text="Animate me!" (tap)="doAnimate()"></Button>
 
-    <!-- This doesn't work -->
-    <webview  height="300" width="400" src="http://google.dk"></webview>
+    <StackLayout height="200" backgroundColor="green">
+      <StackLayout [@statePercent]="animateState"  height="200" backgroundColor="blue"></StackLayout>
+    </StackLayout>
+
+    <StackLayout height="200" backgroundColor="yellow">
+      <StackLayout [@stateAbsolute]="animateState" height="200" backgroundColor="red" ></StackLayout>
+    </StackLayout>
   </StackLayout>
-</ScrollView>
+</ScrolllView>

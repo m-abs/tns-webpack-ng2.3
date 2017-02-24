@@ -1,21 +1,45 @@
-import { Component } from "@angular/core";
+import { Component, animate, trigger, state, style, transition } from "@angular/core";
 
 @Component({
-    selector: "my-app",
-    templateUrl: "app.component.html",
+  selector: "my-app",
+  templateUrl: "app.component.html",
+  animations: [
+    trigger('statePercent', [
+      state('in', style({
+        transform: 'translateY(0)',
+      })),
+      state('out', style({
+        transform: 'translateY(100%)',
+      })),
+      state('void', style({
+        transform: 'translateY(100%)',
+      })),
+      transition('in => out', animate('2000ms ease-out')),
+      transition('* => in', animate('2000ms ease-out')),
+    ]),
+    trigger('stateAbsolute', [
+      state('in', style({
+        transform: 'translateY(0)',
+      })),
+      state('out', style({
+        transform: 'translateY(200)',
+      })),
+      state('void', style({
+        transform: 'translateY(200)',
+      })),
+      transition('in => out', animate('2000ms ease-out')),
+      transition('* => in', animate('2000ms ease-out')),
+    ]),
+  ],
 })
 export class AppComponent {
-    public counter: number = 16;
+  public animateState: string = 'in';
 
-    public get message(): string {
-        if (this.counter > 0) {
-            return this.counter + " taps left";
-        } else {
-            return "Hoorraaay! \nYou are ready to start building!";
-        }
+  public doAnimate() {
+    if (this.animateState === 'in') {
+      this.animateState = 'out';
+    } else {
+      this.animateState = 'in';
     }
-    
-    public onTap() {
-        this.counter--;
-    }
+  }
 }
